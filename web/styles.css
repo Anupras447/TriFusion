@@ -1,0 +1,17 @@
+html,body{margin:0;height:100%;background:#0b0e14;color:#e8ecf3;font-family:Consolas,Menlo,monospace;overflow:hidden}
+#app,#app canvas{position:fixed;inset:0}
+#hud{position:fixed;top:10px;left:10px;background:rgba(10,14,22,.78);border:1px solid #2a3346;
+  border-radius:10px;padding:10px 12px;max-width:430px;backdrop-filter:blur(4px)}
+.row{margin:4px 0;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.title{font-weight:700;letter-spacing:.5px}
+.badge{background:#3a2b00;color:#ffcf5c;border:1px solid #8a6a1c;border-radius:6px;padding:0 6px;font-size:12px}
+.stats span{background:#141a26;border:1px solid #263049;border-radius:6px;padding:2px 8px;font-size:13px}
+#tagToast{background:#0e2a1a;border:1px solid #1f7a4d;color:#7dffa9;border-radius:6px;
+  padding:2px 10px;font-weight:700;transition:background .2s}
+#tagToast.hot{background:#3a120e;border-color:#b03a2a;color:#ffb3a3}
+button{background:#1b2434;color:#e8ecf3;border:1px solid #33415c;border-radius:6px;
+  padding:4px 10px;cursor:pointer;font-family:inherit}
+button.on{background:#123a24;border-color:#1f7a4d}
+.hint{font-size:11px;opacity:.65}
+code{background:#00000055;padding:0 4px;border-radius:4px}
+#nogl{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;font-size:20px}

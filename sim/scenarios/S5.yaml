@@ -1,0 +1,18 @@
+id: S5
+name: Sudden cattle crossing (emergency)
+description: Open road, cows roadside, one sprints across at t=7s twenty meters ahead.
+road_half_width: 6.0
+road_length: 220.0
+goal_y: 200.0
+max_steps: 1500
+ego_start: {lateral: 1.0, speed: 10.0}
+segments:
+  - [0, 320, 0.3, 140.0]
+traffic: {forward: 4, oncoming: 2, rear: 1, pedestrians: 2}
+animals:
+  - {y: 80, lateral: -4.5, kind: cow, behavior: idle}
+  - {y: 95, lateral: 4.6, kind: cow, behavior: idle}
+  - {y: 110, lateral: -4.4, kind: cow, behavior: idle}
+events:
+  - {t: 7.0, type: cow_cross, y: 95, from_lateral: 4.6, to_lateral: -4.6, speed: 2.5}
+success: {min_gap: 2.0}

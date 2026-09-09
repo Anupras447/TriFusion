@@ -1,0 +1,19 @@
+id: S2
+name: Busy urban intersection without signals
+description: Four-way unmarked crossing, idling autos, erratic cross traffic at t=5,7s.
+road_half_width: 6.5
+road_length: 220.0
+goal_y: 200.0
+max_steps: 1800
+ego_start: {lateral: 2.0, speed: 5.0}
+segments:
+  - [0, 320, 0.4, 130.0]
+traffic: {forward: 14, oncoming: 8, rear: 4, pedestrians: 12}
+static_obstacles:
+  - {y: 95, lateral: 4.8, w: 1.4, l: 3.0, kind: auto_idle}
+  - {y: 105, lateral: -4.8, w: 1.4, l: 3.0, kind: auto_idle}
+intersection: {y: 100, half_size: 12.0}
+events:
+  - {t: 5.0, type: cross_traffic, y: 100, from_lateral: -8.0, to_lateral: 8.0, speed: 5.0, kind: auto}
+  - {t: 7.0, type: cross_traffic, y: 104, from_lateral: 8.0, to_lateral: -8.0, speed: 6.0, kind: bike}
+success: {clear_time: 30.0, min_gap: 1.5}

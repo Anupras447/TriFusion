@@ -1,0 +1,22 @@
+id: S1
+name: Unmarked village road
+description: Narrow two-way road, faded markings, parked tractor, cow steps in at t=8s.
+road_half_width: 4.5
+road_length: 220.0
+goal_y: 200.0
+max_steps: 1500
+ego_start: {lateral: 1.5, speed: 6.0}
+segments:
+  - [0, 120, 0.6, 120.0]
+  - [120, 320, 1.4, 80.0]
+traffic: {forward: 8, oncoming: 4, rear: 2, pedestrians: 6}
+static_obstacles:
+  - {y: 60, lateral: -3.2, w: 2.0, l: 4.5, kind: tractor}
+  - {y: 120, lateral: 3.4, w: 1.8, l: 4.2, kind: parked}
+hazards:
+  - {y: 95, lateral: 0.5, kind: pothole}
+animals:
+  - {y: 70, lateral: -3.8, kind: cow, behavior: idle}
+events:
+  - {t: 8.0, type: cow_cross, y: 90, from_lateral: -3.8, to_lateral: 3.8, speed: 1.2}
+success: {max_stops: 3.0, min_gap: 2.0}

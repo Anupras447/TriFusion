@@ -1,0 +1,9 @@
+# sim v2 runtime (headless eval needs only these two)
+numpy
+pyyaml
+# optional: debug viz in main.py (omit on judge laptop if needed)
+pygame-ce
+# legacy only: IRS_dum (2) (1).py DQN + notebook training
+# torch
+# pandas
+# onnxruntime  (enables perception real mode when weights are wired)

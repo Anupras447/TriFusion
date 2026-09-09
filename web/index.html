@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SIH — Indian Road Autonomy Demo (3D)</title>
+<link rel="stylesheet" href="styles.css" />
+<script type="importmap">
+{ "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js" } }
+</script>
+</head>
+<body>
+<div id="app"></div>
+<div id="hud">
+  <div class="row title">SIH DEMO · <span id="scenName">S5 — Sudden cattle crossing</span>
+    <span id="srcBadge" class="badge">MOCK</span></div>
+  <div class="row" id="scenBtns"></div>
+  <div class="row stats">
+    <span>v <b id="hV">0.0</b> m/s</span>
+    <span>t <b id="hT">0.0</b>s</span>
+    <span>replan <b id="hR">–</b> ms</span>
+    <span>TTC <b id="hTTC">–</b>s</span>
+    <span>collisions <b id="hC">0</b></span>
+  </div>
+  <div class="row"><span id="tagToast">MAINTAIN_LANE</span></div>
+  <div class="row controls">
+    <button id="btnPlay">Pause</button>
+    <button id="btnSlow">Slow-mo: off</button>
+    <button id="btnCam">Camera: chase</button>
+  </div>
+  <div class="row hint">Run: <code>python -m http.server</code> in <code>web/</code> · live backend optional on ws://localhost:8765</div>
+</div>
+<div id="nogl" hidden>WebGL unavailable — use Chrome/Edge.</div>
+<script src="mock.js"></script>
+<script type="module" src="app.js"></script>
+</body>
+</html>

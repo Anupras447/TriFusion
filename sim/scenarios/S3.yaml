@@ -1,0 +1,17 @@
+id: S3
+name: Highway merge with slow vehicles
+description: Two-lane highway plus merge ramp, slow truck merges at t=6s, tailgater behind.
+road_half_width: 7.5
+road_length: 300.0
+goal_y: 280.0
+max_steps: 1500
+ego_start: {lateral: 2.0, speed: 12.0}
+segments:
+  - [0, 400, 0.2, 150.0]
+traffic: {forward: 10, oncoming: 0, rear: 6, pedestrians: 0}
+merge_ramp: {start_y: 40, end_y: 90, side: 1}
+static_obstacles: []
+events:
+  - {t: 6.0, type: merge_vehicle, y: 50, lateral: 6.5, speed: 8.0, kind: truck, target_lateral: 2.5}
+  - {t: 2.0, type: tailgater, y: -15, lateral: 2.0, speed: 14.0, kind: car}
+success: {min_ttc: 2.0, min_gap: 2.0}
