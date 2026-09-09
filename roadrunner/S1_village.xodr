@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- S1 village road: 220 m unmarked rural 2-lane. RoadRunner: File > Import > OpenDRIVE. -->
+<OpenDRIVE>
+  <header revMajor="1" revMinor="6" name="S1_village" version="1.6.0" date="2026-09-09"
+          north="0.0" south="0.0" east="0.0" west="0.0" vendor="TriFusion SIH"/>
+  <road name="village_road" length="230.0" id="1" junction="-1">
+    <planView>
+      <geometry s="0.0" x="0.0" y="0.0" hdg="0.0" length="120.0"><line/></geometry>
+      <geometry s="120.0" x="120.0" y="0.0" hdg="0.0" length="60.0"><spiral curvStart="0.0" curvEnd="0.004"/></geometry>
+      <geometry s="180.0" x="179.7" y="7.1" hdg="0.24" length="50.0"><spiral curvStart="0.004" curvEnd="0.0"/></geometry>
+    </planView>
+    <lanes>
+      <laneSection s="0.0">
+        <center><lane id="0" type="none" level="false"/></center>
+        <left><lane id="1" type="driving" level="false">
+          <width sOffset="0.0" a="4.5" b="0.0" c="0.0" d="0.0"/>
+          <roadMark sOffset="0.0" type="none" weight="standard" color="standard"/>
+        </lane></left>
+        <right><lane id="-1" type="driving" level="false">
+          <width sOffset="0.0" a="4.5" b="0.0" c="0.0" d="0.0"/>
+          <roadMark sOffset="0.0" type="none" weight="standard" color="standard"/>
+        </lane></right>
+      </laneSection>
+    </lanes>
+    <objects>
+      <object name="parked_tractor" s="60.0" t="-3.2" type="vehicle" subtype="tractor"
+              id="101" orientation="none" length="4.5" width="2.0" height="2.6" hdg="0.0" zOffset="0.0"/>
+      <object name="pothole_1" s="95.0" t="0.5" type="obstacle" subtype="pothole"
+              id="102" orientation="none" length="1.2" width="1.2" height="0.1" hdg="0.0" zOffset="0.0"/>
+      <object name="cow_roadside_1" s="70.0" t="-4.4" type="pedestrian" subtype="cow"
+              id="103" orientation="none" length="2.0" width="1.2" height="1.5" hdg="0.0" zOffset="0.0"/>
+      <object name="parked_car" s="120.0" t="3.4" type="vehicle" subtype="car"
+              id="104" orientation="none" length="4.2" width="1.8" height="1.5" hdg="0.0" zOffset="0.0"/>
+    </objects>
+  </road>
+</OpenDRIVE>

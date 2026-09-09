@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- S4 market street: 220 m shared space, vendor stalls both sides. -->
+<OpenDRIVE>
+  <header revMajor="1" revMinor="6" name="S4_market" version="1.6.0" date="2026-09-09"
+          north="0.0" south="0.0" east="0.0" west="0.0" vendor="TriFusion SIH"/>
+  <road name="market_street" length="230.0" id="1" junction="-1">
+    <planView>
+      <geometry s="0.0" x="0.0" y="0.0" hdg="0.0" length="230.0"><line/></geometry>
+    </planView>
+    <lanes>
+      <laneSection s="0.0">
+        <center><lane id="0" type="none" level="false"/></center>
+        <left><lane id="1" type="driving" level="false">
+          <width sOffset="0.0" a="5.0" b="0.0" c="0.0" d="0.0"/>
+          <roadMark sOffset="0.0" type="none" weight="standard" color="standard"/>
+        </lane></left>
+        <right><lane id="-1" type="driving" level="false">
+          <width sOffset="0.0" a="5.0" b="0.0" c="0.0" d="0.0"/>
+          <roadMark sOffset="0.0" type="none" weight="standard" color="standard"/>
+        </lane></right>
+      </laneSection>
+    </lanes>
+    <objects>
+      <object name="stall_L1" s="60.0" t="-4.2" type="obstacle" subtype="vendor_stall"
+              id="101" orientation="none" length="2.0" width="2.0" height="2.4" hdg="0.0" zOffset="0.0"/>
+      <object name="stall_R1" s="90.0" t="4.2" type="obstacle" subtype="vendor_stall"
+              id="102" orientation="none" length="2.0" width="2.0" height="2.4" hdg="0.0" zOffset="0.0"/>
+      <object name="stall_L2" s="130.0" t="-4.2" type="obstacle" subtype="vendor_stall"
+              id="103" orientation="none" length="2.0" width="2.0" height="2.4" hdg="0.0" zOffset="0.0"/>
+      <object name="stall_R2" s="160.0" t="4.2" type="obstacle" subtype="vendor_stall"
+              id="104" orientation="none" length="2.0" width="2.0" height="2.4" hdg="0.0" zOffset="0.0"/>
+      <object name="cart_start" s="110.0" t="4.2" type="obstacle" subtype="vendor_cart"
+              id="105" orientation="none" length="2.4" width="1.6" height="1.6" hdg="0.0" zOffset="0.0"/>
+    </objects>
+  </road>
+</OpenDRIVE>

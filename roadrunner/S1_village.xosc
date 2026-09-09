@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- S1: cow steps onto village road at t=8 s. RoadRunner: ScenarioBuilder > Open. -->
+<OpenSCENARIO xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <FileHeader revMajor="1" revMinor="0" date="2026-09-09" description="S1 unmarked village road, cow crossing" author="TriFusion SIH"/>
+  <CatalogLocations/>
+  <RoadNetwork>
+    <LogicFile filepath="S1_village.xodr"/>
+    <SceneGraphFile filepath=""/>
+  </RoadNetwork>
+  <Entities>
+    <ScenarioObject name="Ego">
+      <Vehicle name="EgoCar" vehicleCategory="car" mass="1500.0">
+        <ParameterDeclarations/>
+        <Performance maxSpeed="18.0" maxAcceleration="3.0" maxDeceleration="6.0"/>
+        <BoundingBox><Center x="1.4" y="0.0" z="0.9"/><Dimensions width="1.7" length="4.2" height="1.8"/></BoundingBox>
+        <Axles><FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.6" positionX="1.4" positionZ="0.3"/>
+        <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.6" positionX="-1.4" positionZ="0.3"/></Axles>
+      </Vehicle>
+    </ScenarioObject>
+    <ScenarioObject name="Cow1">
+      <Pedestrian name="Cow" mass="400.0" model="cow" pedestrianCategory="animal">
+        <ParameterDeclarations/>
+        <BoundingBox><Center x="0.0" y="0.0" z="0.8"/><Dimensions width="1.2" length="2.0" height="1.5"/></BoundingBox>
+      </Pedestrian>
+    </ScenarioObject>
+  </Entities>
+  <Storyboard>
+    <Init>
+      <Actions>
+        <Private entityRef="Ego"><PrivateAction>
+          <TeleportAction><Position><LanePosition roadId="1" laneId="-1" offset="0.0" s="0.0"/></Position></TeleportAction>
+        </PrivateAction></Private>
+        <Private entityRef="Ego"><PrivateAction>
+          <LongitudinalAction><SpeedAction><SpeedActionDynamics dynamicsShape="step" value="6.0" dynamicsDimension="time"/>
+          <SpeedActionTarget><AbsoluteTargetSpeed value="6.0"/></SpeedActionTarget></SpeedAction></LongitudinalAction>
+        </PrivateAction></Private>
+        <Private entityRef="Cow1"><PrivateAction>
+          <TeleportAction><Position><WorldPosition x="-3.8" y="90.0" z="0.0" h="1.57"/></Position></TeleportAction>
+        </PrivateAction></Private>
+      </Actions>
+    </Init>
+    <Story name="CowCrossing">
+      <Act name="Crossing">
+        <ManeuverGroup maximumExecutionCount="1" name="CowMG">
+          <Actors selectTriggeringEntities="false"><EntityRef entityRef="Cow1"/></Actors>
+          <Maneuver name="Cross">
+            <Event name="AtT8" priority="overwrite">
+              <Action name="WalkAcross" xsi:type="PrivateAction">
+                <PrivateAction><LateralAction><LaneChangeAction>
+                  <LaneChangeActionDynamics dynamicsShape="linear" value="3.0" dynamicsDimension="distance"/>
+                  <LaneChangeTarget><RelativeTargetLane entityRef="Ego" value="-1"/></LaneChangeTarget>
+                </LaneChangeAction></LateralAction></PrivateAction>
+              </Action>
+              <StartTrigger><ConditionGroup><Condition name="T8" delay="0" conditionEdge="rising">
+                <ByValueCondition><SimulationTimeCondition value="8.0" rule="greaterThan"/></ByValueCondition>
+              </Condition></ConditionGroup></StartTrigger>
+            </Event>
+          </Maneuver>
+        </ManeuverGroup>
+        <StartTrigger><ConditionGroup><Condition name="Go" delay="0" conditionEdge="rising">
+          <ByValueCondition><SimulationTimeCondition value="0.0" rule="greaterThan"/></ByValueCondition>
+        </Condition></ConditionGroup></StartTrigger>
+      </Act>
+      <StopTrigger><ConditionGroup><Condition name="End" delay="0" conditionEdge="rising">
+        <ByValueCondition><SimulationTimeCondition value="75.0" rule="greaterThan"/></ByValueCondition>
+      </Condition></ConditionGroup></StopTrigger>
+    </Story>
+  </Storyboard>
+</OpenSCENARIO>

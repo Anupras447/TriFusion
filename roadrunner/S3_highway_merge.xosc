@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- S3: slow truck merges from ramp t=6 s; tailgater behind ego from t=2 s. -->
+<OpenSCENARIO xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <FileHeader revMajor="1" revMinor="0" date="2026-09-09" description="S3 highway merge with slow truck" author="TriFusion SIH"/>
+  <CatalogLocations/>
+  <RoadNetwork>
+    <LogicFile filepath="S3_highway_merge.xodr"/>
+    <SceneGraphFile filepath=""/>
+  </RoadNetwork>
+  <Entities>
+    <ScenarioObject name="Ego">
+      <Vehicle name="EgoCar" vehicleCategory="car" mass="1500.0">
+        <ParameterDeclarations/>
+        <Performance maxSpeed="18.0" maxAcceleration="3.0" maxDeceleration="6.0"/>
+        <BoundingBox><Center x="1.4" y="0.0" z="0.9"/><Dimensions width="1.7" length="4.2" height="1.8"/></BoundingBox>
+        <Axles><FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.6" positionX="1.4" positionZ="0.3"/>
+        <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.6" positionX="-1.4" positionZ="0.3"/></Axles>
+      </Vehicle>
+    </ScenarioObject>
+    <ScenarioObject name="Truck">
+      <Vehicle name="SlowTruck" vehicleCategory="truck" mass="8000.0">
+        <ParameterDeclarations/>
+        <Performance maxSpeed="12.0" maxAcceleration="1.5" maxDeceleration="4.0"/>
+        <BoundingBox><Center x="2.5" y="0.0" z="1.5"/><Dimensions width="2.4" length="8.0" height="3.0"/></BoundingBox>
+        <Axles><FrontAxle maxSteering="0.5" wheelDiameter="0.9" trackWidth="2.0" positionX="2.5" positionZ="0.45"/>
+        <RearAxle maxSteering="0.0" wheelDiameter="0.9" trackWidth="2.0" positionX="-2.5" positionZ="0.45"/></Axles>
+      </Vehicle>
+    </ScenarioObject>
+    <ScenarioObject name="Tailgater">
+      <Vehicle name="TailCar" vehicleCategory="car" mass="1500.0">
+        <ParameterDeclarations/>
+        <Performance maxSpeed="18.0" maxAcceleration="3.5" maxDeceleration="6.0"/>
+        <BoundingBox><Center x="1.4" y="0.0" z="0.9"/><Dimensions width="1.7" length="4.2" height="1.8"/></BoundingBox>
+        <Axles><FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.6" positionX="1.4" positionZ="0.3"/>
+        <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.6" positionX="-1.4" positionZ="0.3"/></Axles>
+      </Vehicle>
+    </ScenarioObject>
+  </Entities>
+  <Storyboard>
+    <Init>
+      <Actions>
+        <Private entityRef="Ego"><PrivateAction>
+          <TeleportAction><Position><LanePosition roadId="1" laneId="-1" offset="0.0" s="0.0"/></Position></TeleportAction>
+        </PrivateAction></Private>
+        <Private entityRef="Ego"><PrivateAction>
+          <LongitudinalAction><SpeedAction><SpeedActionDynamics dynamicsShape="step" value="12.0" dynamicsDimension="time"/>
+          <SpeedActionTarget><AbsoluteTargetSpeed value="12.0"/></SpeedActionTarget></SpeedAction></LongitudinalAction>
+        </PrivateAction></Private>
+        <Private entityRef="Truck"><PrivateAction>
+          <TeleportAction><Position><LanePosition roadId="1" laneId="-2" offset="0.0" s="50.0"/></Position></TeleportAction>
+        </PrivateAction></Private>
+        <Private entityRef="Tailgater"><PrivateAction>
+          <TeleportAction><Position><LanePosition roadId="1" laneId="-1" offset="0.0" s="-15.0"/></Position></TeleportAction>
+        </PrivateAction></Private>
+      </Actions>
+    </Init>
+    <Story name="Merge">
+      <Act name="MergeAct">
+        <ManeuverGroup maximumExecutionCount="1" name="TruckMG">
+          <Actors selectTriggeringEntities="false"><EntityRef entityRef="Truck"/></Actors>
+          <Maneuver name="MergeIn">
+            <Event name="AtT6" priority="overwrite">
+              <Action name="CutIn" xsi:type="PrivateAction"><PrivateAction>
+                <LateralAction><LaneChangeAction>
+                  <LaneChangeActionDynamics dynamicsShape="sinusoidal" value="6.0" dynamicsDimension="time"/>
+                  <LaneChangeTarget><AbsoluteTargetLane value="-1"/></LaneChangeTarget>
+                </LaneChangeAction></LateralAction></PrivateAction>
+              </Action>
+              <StartTrigger><ConditionGroup><Condition name="T6" delay="0" conditionEdge="rising">
+                <ByValueCondition><SimulationTimeCondition value="6.0" rule="greaterThan"/></ByValueCondition>
+              </Condition></ConditionGroup></StartTrigger>
+            </Event>
+          </Maneuver>
+        </ManeuverGroup>
+        <ManeuverGroup maximumExecutionCount="1" name="TailMG">
+          <Actors selectTriggeringEntities="false"><EntityRef entityRef="Tailgater"/></Actors>
+          <Maneuver name="Push">
+            <Event name="AtT2" priority="overwrite">
+              <Action name="Speed" xsi:type="PrivateAction"><PrivateAction>
+                <LongitudinalAction><SpeedAction><SpeedActionDynamics dynamicsShape="linear" value="2.0" dynamicsDimension="time"/>
+                <SpeedActionTarget><AbsoluteTargetSpeed value="14.0"/></SpeedActionTarget></SpeedAction></LongitudinalAction>
+              </PrivateAction></Action>
+              <StartTrigger><ConditionGroup><Condition name="T2" delay="0" conditionEdge="rising">
+                <ByValueCondition><SimulationTimeCondition value="2.0" rule="greaterThan"/></ByValueCondition>
+              </Condition></ConditionGroup></StartTrigger>
+            </Event>
+          </Maneuver>
+        </ManeuverGroup>
+        <StartTrigger><ConditionGroup><Condition name="Go" delay="0" conditionEdge="rising">
+          <ByValueCondition><SimulationTimeCondition value="0.0" rule="greaterThan"/></ByValueCondition>
+        </Condition></ConditionGroup></StartTrigger>
+      </Act>
+      <StopTrigger><ConditionGroup><Condition name="End" delay="0" conditionEdge="rising">
+        <ByValueCondition><SimulationTimeCondition value="75.0" rule="greaterThan"/></ByValueCondition>
+      </Condition></ConditionGroup></StopTrigger>
+    </Story>
+  </Storyboard>
+</OpenSCENARIO>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- S5 open road: 220 m, roadside cow props; emergency crossing is dynamic (.xosc). -->
+<OpenDRIVE>
+  <header revMajor="1" revMinor="6" name="S5_open_road" version="1.6.0" date="2026-09-09"
+          north="0.0" south="0.0" east="0.0" west="0.0" vendor="TriFusion SIH"/>
+  <road name="open_road" length="230.0" id="1" junction="-1">
+    <planView>
+      <geometry s="0.0" x="0.0" y="0.0" hdg="0.0" length="230.0"><line/></geometry>
+    </planView>
+    <lanes>
+      <laneSection s="0.0">
+        <center><lane id="0" type="none" level="false"/></center>
+        <left><lane id="1" type="driving" level="false">
+          <width sOffset="0.0" a="6.0" b="0.0" c="0.0" d="0.0"/>
+          <roadMark sOffset="0.0" type="broken" weight="standard" color="white"/>
+        </lane></left>
+        <right><lane id="-1" type="driving" level="false">
+          <width sOffset="0.0" a="6.0" b="0.0" c="0.0" d="0.0"/>
+          <roadMark sOffset="0.0" type="broken" weight="standard" color="white"/>
+        </lane></right>
+      </laneSection>
+    </lanes>
+    <objects>
+      <object name="cow_roadside_1" s="80.0" t="-4.5" type="pedestrian" subtype="cow"
+              id="101" orientation="none" length="2.0" width="1.2" height="1.5" hdg="0.0" zOffset="0.0"/>
+      <object name="cow_roadside_2" s="95.0" t="4.6" type="pedestrian" subtype="cow"
+              id="102" orientation="none" length="2.0" width="1.2" height="1.5" hdg="0.0" zOffset="0.0"/>
+      <object name="cow_roadside_3" s="110.0" t="-4.4" type="pedestrian" subtype="cow"
+              id="103" orientation="none" length="2.0" width="1.2" height="1.5" hdg="0.0" zOffset="0.0"/>
+    </objects>
+  </road>
+</OpenDRIVE>
